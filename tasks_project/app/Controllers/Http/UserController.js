@@ -1,10 +1,10 @@
 'use strict'
 
-const User = require('App/Models/User');
+const User = use('App/Models/User');
 
 class UserController {
 	async register({request}){
-		const {email, password} = request.all();
+		const {username, email, password} = request.all();
 		const user = await User.create({
 			username,
 			email,
