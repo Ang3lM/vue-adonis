@@ -3,14 +3,19 @@
 const User = use('App/Models/User');
 
 class UserController {
+	async login({auth, request}){
+		const {email, password} = request.all();
+		const token = auth.attempt(email,password);
+		return token;
+	}
 	async register({request}){
 		const {username, email, password} = request.all();
-		const user = await User.create({
+		await User.create({
 			username,
 			email,
 			password
 		});
-		return user;
+		return this.login(...arguments);
 	}
 }
 
